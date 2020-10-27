@@ -88,12 +88,8 @@ if ("cat" === "dog") {
         if (typeof true === "boolean") {
             console.log("boolean")
         }
-    //4
-        if (variable != null) {
-            console.log("defined")
-        } else {
-            console.log("undefined")
-        }
+    //4 if statement if variable is defined or undefined
+
     //5
         if ("S" > 12) {
             console.log(true)
