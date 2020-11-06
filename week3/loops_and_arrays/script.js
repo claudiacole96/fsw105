@@ -21,6 +21,26 @@ var peopleWhoWantToSeeMadMaxFuryRoad = [
         gender: "female"
     }
 ]
+
+//1.
+for ( i = 0 ; i < peopleWhoWantToSeeMadMaxFuryRoad.length ; i++ ) {
+    if ( peopleWhoWantToSeeMadMaxFuryRoad[i].age < 18 ) {
+        console.log( "not old enough" )
+    } else {
+        console.log( "old enough" )
+    }
+}
+
+//2.
+for ( i = 0 ; i < peopleWhoWantToSeeMadMaxFuryRoad.length ; i++ ) {
+    if ( peopleWhoWantToSeeMadMaxFuryRoad[i].age ) {
+        console.log( peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is not old enough to see Mad Max" )
+    } else {
+        console.log( peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is old enough to see Mad Max" )
+    }
+}
+
+//3.
 for ( i = 0 ; i < peopleWhoWantToSeeMadMaxFuryRoad.length ; i++ ) {
     if ( peopleWhoWantToSeeMadMaxFuryRoad[i].age < 18 && peopleWhoWantToSeeMadMaxFuryRoad[i].gender === "male" ) {
         console.log( peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is not old enough to see Mad Max, don't let him in." )
@@ -32,6 +52,8 @@ for ( i = 0 ; i < peopleWhoWantToSeeMadMaxFuryRoad.length ; i++ ) {
         console.log( peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is old enough to see Mad Max, let her in." )
     }
 }
+
+//4.
 for ( i = 0; i < 101; i++ ) {
     if ( i % 2 === 0) {
         console.log( "even" )
