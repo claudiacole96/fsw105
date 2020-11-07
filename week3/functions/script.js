@@ -28,10 +28,11 @@ function stringDoubleOrNot( string ) {
     if ( string.length < 20 ) {
         return string + " " + string
     } else {
-        return string
+        return string.slice(0, string.length / 2)
     }
 }
 console.log( stringDoubleOrNot("Hello my name is") )
+console.log( stringDoubleOrNot("This sentence is longer than 20 characters") )
 
 //extra credit
 //sum of specified length of first numbers in an array
