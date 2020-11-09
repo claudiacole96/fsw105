@@ -47,10 +47,11 @@ console.log( sumOfNNumbers(4) )
 //most frequent letter character in string
 
 function mostOccuringCharacter( string ) {
+    var lowString = string.toLowerCase();
     const stringObject = {};
     var max = 0;
     var maxChar = "";
-    for ( let char of string ) {
+    for ( let char of lowString ) {
         if ( stringObject[char] ) {
             stringObject[char]++;
         } else {
