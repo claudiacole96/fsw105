@@ -56,7 +56,8 @@ console.log(pushVegetablesToArray());
 function addTwoArrays(a, b) {
     var a = fruit;
     var b = vegetables;
-    var food = a.concat(b);
+    //var food = a.concat(b);    ...Seeing if both options would work
+    var food = [...a, ...b]
     return food;
 }
 var food = addTwoArrays();
