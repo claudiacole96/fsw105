@@ -34,7 +34,7 @@ function Employee(name, jobTitle, salary, status = "Full-time") {
 
 const tom = new Employee("Tom", "Head Security", "$100,000");
 const jerry = new Employee("Jerry", "Cook", "$75,000");
-const spike = new Employee("Spike", "Guard", "25,000", "Part-time");
+const spike = new Employee("Spike", "Guard", "$25,000", "Part-time");
 
 tom.printEmployeeForm();
 console.log("-------------------------------------")
