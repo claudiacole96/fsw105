@@ -28,7 +28,6 @@ const placesToSearch = [desk, trash, aboveDoor, box, guitar];
 //random number generator to get a random location the key is hidden every time you play the game, the hiding spot will never be the same
 let randomNumber = () => (Math.floor(Math.random() * 5)) + 1;
 let hiddenKey = randomNumber();
-console.log(hiddenKey);
 
 //found key and not found key messages for DRY coding
 const foundKeyMessage = "Congratulations, you have found the key! Please proceed to open the door!";
@@ -55,7 +54,6 @@ while (playerLife == true){
                                 hasFoundKey = true;
                             } else {
                                 console.log(noKeyFoundMessage);
-                                console.log(hiddenKey);
                             }
                             placesToSearch[i-1] = true;
                         } else if (placesToSearch[i-1] == true) {
