@@ -44,13 +44,6 @@ const removeUsedItem = (item) => {
         }
     }
 }
-const removeUsedRareItem = (item) => {
-    for (i=0;i<playerRareItems.length;i++) {
-        if (item.name == playerRareItems[i].name) {
-            playerRareItems.splice(i, 1);
-        }
-    }
-}
 
 //items
 class item {
@@ -108,8 +101,7 @@ class rareItem extends item {
 const revivalStone = new rareItem("A Revival Stone", 0, () => {
     if (revivalStone.own == true && player.curHP < 1) {
         player.curHP = (player.maxHP / 2);
-        revivalStone.qnt = revivalStone.qnt - 1;
-        removeUsedRareItem(revivalStone);
+        revivalStone.own = false;
         console.log("Item has been used.");
     } else {
         console.log("You do not own this item");
@@ -118,8 +110,7 @@ const revivalStone = new rareItem("A Revival Stone", 0, () => {
 const hpStone = new rareItem("An HP Stone", 0, () => {
     if (hpStone.own == true) {
         player.curHP = player.maxHP;
-        hpStone.qnt = hpStone.qnt - 1;
-        removeUsedRareItem(hpStone);
+        hpStone.own = false;
         console.log("Item has been used.");
     } else {
         console.log("You do not own this item");
@@ -128,8 +119,7 @@ const hpStone = new rareItem("An HP Stone", 0, () => {
 const bomb = new rareItem("A Bomb", 0, () => {
     if (bomb.own == true) {
         chosenEnemy.curHP = chosenEnemy.curHP / 2;
-        bomb.qnt = bomb.qnt - 1;
-        removeUsedRareItem(bomb);
+        bomb.own = false;
         console.log("Item has been used.");
     } else {
         console.log("You do not own this item");
@@ -138,17 +128,23 @@ const bomb = new rareItem("A Bomb", 0, () => {
 const rareItems = [revivalStone, hpStone, bomb];
 let playerItems = [];
 let playerRareItems = [];
-let getInventory = (arr, newArr) => {
-    x = arr.filter(i => i.own == true);
-    for (i = 0; i < x.length; i++) {
-        newArr.push(x[i].name);
-    }
-}
 let getInventoryOfItems = () => {
+    arr = [];
     for (i = 0; i < playerItems.length; i++) {
-        itemInventory.push(playerItems[i].name);
+        arr.push(playerItems[i].name);
     }
+    itemInventory = arr;
     itemInventory = itemInventory.sort();
+}
+let getInventoryOfRareItems = () => {
+    arr = [];
+    for (i = 0; i < rareItems.length; i++) {
+        if (rareItems[i].own == true) {
+            arr.push(rareItems[i].name);
+        }
+    }
+    rareItemInventory = arr;
+    rareItemInventory = rareItemInventory.sort();
 }
 
 //attacks
@@ -336,7 +332,7 @@ let itemChoice = (i) => {
 }
 let rareItemChoice = (i) => {
     if (rareItems[i].own == true) {
-        return `${rareItems[i].name} Qnt: ${rareItems[i].qnt}`;
+        return `${rareItems[i].name}`;
     } else {
         return "unavailable";
     }
@@ -451,7 +447,7 @@ console.log(`\nBut the reason this quest is so difficult, there's a mysterious e
 console.log(`Keep note of what weapons do more damage when you fight, as well as which attacks you use in battle. Don't forget to use your items!`);
 console.log(`\nWell, ${player.name}, I believe you are ready to defeat the beast at the top of the mountain! I wish you luck, young adventurer!`);
 
-while (player.curHP > 0 && dragonDefeat == false && quitGame == false || revivalStone.own == true) {
+while (player.curHP > 0 && dragonDefeat == false && quitGame == false ) {
     let keyPress = readline.keyIn(`"w" walk, "s" print stats, "i" print inventory, "q" quit game \n`);
     let playerRun = false;
     if (keyPress == "w" || keyPress == "W") {
@@ -540,10 +536,10 @@ while (player.curHP > 0 && dragonDefeat == false && quitGame == false || revival
         console.log(player);
     
     } else if (keyPress == "i" || keyPress == "I") {
-        itemInventory = [];
-        rareItemInventory = [];
+        let itemInventory = [];
+        let rareItemInventory = [];
         getInventoryOfItems();
-        getInventory(rareItems, rareItemInventory);
+        getInventoryOfRareItems();
         console.log(`Weapon Inventory: ${playerWeapons} \nShield Inventory: ${playerShields} \nItem Inventory: ${itemInventory} \nRare Item Inventory: ${rareItemInventory}`);
 
     } else if (keyPress == "q" || keyPress == "Q") {
