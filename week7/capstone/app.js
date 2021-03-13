@@ -178,7 +178,7 @@ const player =  {
     dmg: 10,
     equipWeapon: "",
     equipShield: "",
-    enemyKills: 0,
+    enemyKills: 0
 }
 
 //level up functions called at end of every battle
